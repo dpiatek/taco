@@ -1,0 +1,25 @@
+/* All classes should be extendable */
+
+generateClasses(basename = grid, itemname = "")
+  .{basename}
+    margin-left: -24px
+    list-style: none
+    letter-spacing: -0.31em
+    word-spacing: -0.43em
+
+  .{basename}-{itemname}
+    display: inline-block
+    width: 100%
+    padding-left: 24px
+    vertical-align: top
+    box-sizing: border-box
+    letter-spacing: normal
+    word-spacing: normal
+
+
+  for $i in (2..10)
+    for $j in (1..$i - 1)
+      .{basename}-{itemname}-{$j}-{$i}
+        width: ((100 / $i) * $j)%
+
+generateClasses(grid, item)
