@@ -1,0 +1,38 @@
+/* All classes should be extendable */
+
+.grid {
+  margin-left: -24px;
+  list-style: none;
+  letter-spacing: -0.31em;
+  word-spacing: -0.43em;
+}
+
+.grid-item {
+  display: inline-block;
+  width: 100%;
+  padding-left: 24px;
+  vertical-align:top;
+  box-sizing: border-box;
+  letter-spacing: normal;
+  word-spacing: normal;
+}
+
+.grid-one-third {
+  width: 33.333%;
+}
+
+.grid-two-thirds {
+  width: 66.666%;
+}
+
+.grid-one-fourth {
+  width: 25%;
+}
+
+.grid-one-sixth {
+  width: 16.666%;
+}
+
+.grid-two-sixths {
+  width: 33.333%;
+}
