@@ -21,21 +21,27 @@
 .grid-item-4-5 {
   width: 80%;
 }
-@media (max-width: 350px) {
-  .palm-grid-item-1-5 {
+.grid-item-full {
+  width: 100%;
+}
+@media (max-width: 768px) {
+  .lap-grid-item-1-5 {
     width: 20%;
   }
-  .palm-grid-item-2-5 {
+  .lap-grid-item-2-5 {
     width: 40%;
   }
-  .palm-grid-item-3-5 {
+  .lap-grid-item-3-5 {
     width: 60%;
   }
-  .palm-grid-item-4-5 {
+  .lap-grid-item-4-5 {
     width: 80%;
   }
-  .hidden-palm-grid-item {
+  .hidden-lap-grid-item {
     display: none;
+  }
+  .lap-grid-item-full {
+    width: 100%;
   }
 }
 body {
@@ -97,6 +103,14 @@ h2 {
   line-height: 1em;
   margin-top: 0;
   color: #fff;
+}
+.nav.-inline {
+  display: none;
+}
+@media (max-width: 768px) {
+  .nav.-inline {
+    display: block;
+  }
 }
 .link-heading {
   text-decoration: none;
