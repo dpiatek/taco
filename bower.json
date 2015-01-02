@@ -1,0 +1,6 @@
+{
+  "name": "taco-homepage",
+  "dependencies": {
+    "taco": "~0.1.0-pre"
+  }
+}
