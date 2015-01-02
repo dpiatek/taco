@@ -1,0 +1,23 @@
+{
+  "name": "taco",
+  "version": "0.1.0",
+  "homepage": "http://dpiatek.github.io/taco/",
+  "authors": [
+    "Dominik Piatek <do.piatek@gmail.com>"
+  ],
+  "description": "A simple framework for building CSS grid systems.",
+  "main": "taco.styl",
+  "keywords": [
+    "CSS",
+    "grid",
+    "Stylus"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
