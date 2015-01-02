@@ -1,25 +1,84 @@
-/* All classes should be extendable */
+@import "taco.styl"
 
-generateClasses(basename = grid, itemname = "")
-  .{basename}
-    margin-left: -24px
-    list-style: none
-    letter-spacing: -0.31em
-    word-spacing: -0.43em
+generateGrid(columns: 5, floats: false)
 
-  .{basename}-{itemname}
-    display: inline-block
-    width: 100%
-    padding-left: 24px
-    vertical-align: top
-    box-sizing: border-box
-    letter-spacing: normal
-    word-spacing: normal
+@media (max-width: 350px)
+  genereteWidths(columns: 5, name: palm-grid-item, hidden: "hidden-")
 
+body
+  font-family: 'Raleway', sans-serif
+  background-color: #111
+  color: white
+  max-width: 960px
+  margin: 1em auto
 
-  for $i in (2..10)
-    for $j in (1..$i - 1)
-      .{basename}-{itemname}-{$j}-{$i}
-        width: ((100 / $i) * $j)%
+  @media (max-width: 960px)
+    max-width: none
+    margin: 1em
 
-generateClasses(grid, item)
+pre
+  border-left: 1px solid rgba(144, 238, 144, 0.2)
+  border-bottom: 1px solid rgba(144, 238, 144, 0.2)
+  padding: 1em
+  color: rgba(144, 238, 144, 0.5)
+
+code
+  color: rgba(144, 238, 144, 0.5)
+
+a
+  color: lightgreen
+
+a:visted
+  color: lightgreen
+
+section
+  margin-top: 3.5em
+
+dt
+  color: lightgreen
+
+dt:before
+  content: ""
+
+h1
+  font-size: 4em
+  font-family: 'Montserrat', sans-serif
+  font-weight: 700
+  line-height: 1em
+  text-transform: uppercase
+  margin-top: 0
+  color: white
+
+h1:first-letter
+  color: lightgreen
+
+h1 + p
+  color: lightgreen
+
+h2
+  font-size: 1.5em
+  font-family: 'Montserrat', sans-serif
+  font-weight: 700
+  line-height: 1em
+  margin-top: 0
+  color: white
+
+.link-heading
+  text-decoration: none
+
+.link-heading:hover
+  text-decoration: none
+
+.link-heading:hover h2:after
+  content: "#"
+  margin-left: 2px
+
+.params-list ul
+  padding-left: 0
+
+.params-list p
+  margin-top: 0
+
+.params-list span
+  color: lightgreen
+

@@ -1,0 +1,49 @@
+generateGrid(
+  basename = grid,
+  itemname = -item,
+  floats = true,
+  valign = top,
+  columns = 2..10,
+  gutter = 24)
+
+  // Grid wrapper class
+  .{basename}
+    margin-left: -(unit(gutter, px))
+
+  // Create a row class if needed
+  if floats
+    .{basename + itemname}-row
+      &:after
+        clear: both
+
+      &:before, &:after
+        box-sizing: border-box
+        display: table
+        content: " "
+
+  // Grid item class
+  .{basename + itemname}
+    if floats
+      float: left
+    else
+      display: inline-block
+      // inline-block whitespace
+      margin-left: -4px
+      vertical-align: valign
+
+    width: 100%
+    padding-left: unit(gutter, px)
+    box-sizing: border-box
+
+  // Grid item width classes
+  genereteWidths(columns, basename + itemname)
+
+genereteWidths(columns, name, hidden = false)
+  for $i in columns
+    for $j in (1..$i - 1)
+      .{name}-{$j}-{$i}
+        width: ((100 / $i) * $j)%
+
+  if hidden
+    .{hidden + name}
+      display: none

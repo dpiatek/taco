@@ -2,89 +2,180 @@
 <html>
   <head>
     <meta charset="uft-8">
-    <title>Taco Grid-item</title>
+    <title>Taco Grid - A framework for building CSS grids</title>
+    <!-- <link href='http://fonts.googleapis.com/css?family=Montserrat:700|Raleway:400,700' rel='stylesheet' type='text/css'> -->
+    <link rel="stylesheet" href="framework.css">
     <link rel="stylesheet" href="style.css">
-
-    <style>
-      .content {
-        background-color: lightblue;
-        text-align: center;
-        margin-bottom: 5px;
-      }
-    </style>
   </head>
   <body>
-
     <div class="grid">
-      <div class="grid-item grid-item-1-3">
-        <div class="content">1/3</div>
-      </div>
-      <div class="grid-item grid-item-2-3">
-        <div class="content">2/3</div>
-      </div>
 
-      <div class="grid-item grid-item-1-4">
-        <div class="content">1/4</div>
-      </div>
-      <div class="grid-item grid-item-3-4">
-        <div class="content">3/4</div>
-      </div>
-
-      <div class="grid-item grid-item-2-5">
-        <div class="content">2/5</div>
-      </div>
       <div class="grid-item grid-item-3-5">
-        <div class="content">3/5</div>
-      </div>
-
-      <div class="grid-item grid-item-1-6">
-        <div class="content">1/6</div>
-      </div>
-      <div class="grid-item grid-item-2-6">
-        <div class="content">2/6</div>
-      </div>
-      <div class="grid-item grid-item-3-6">
-        <div class="content">3/6</div>
-      </div>
-
-      <div class="grid-item grid-item-2-7">
-        <div class="content">2/7</div>
-      </div>
-      <div class="grid-item grid-item-5-7">
-        <div class="content">5/7</div>
-      </div>
-
-      <div class="grid-item grid-item-3-8">
-        <div class="content">3/8</div>
-      </div>
-      <div class="grid-item grid-item-5-8">
-        <div class="content">5/8</div>
-      </div>
-
-      <div class="grid-item grid-item-1-9">
-        <div class="content">1/9</div>
-      </div>
-      <div class="grid-item grid-item-3-9">
-        <div class="content">3/9</div>
-      </div>
-      <div class="grid-item grid-item-5-9">
-        <div class="content">5/9</div>
-      </div>
-
-      <div class="grid-item grid-item-1-10">
-        <div class="content">1/10</div>
-      </div>
-      <div class="grid-item grid-item-2-10">
-        <div class="content">2/10</div>
-      </div>
-      <div class="grid-item grid-item-3-10">
-        <div class="content">3/10</div>
-      </div>
-      <div class="grid-item grid-item-4-10">
-        <div class="content">4/10</div>
+        <h1>Taco</h1>
+        <p>Taco is a simple framework for building CSS grid systems.</p>
       </div>
     </div>
 
+    <div class="grid">
+      <div class="grid-item grid-item-3-5">
+        <p>Taco follows a few tried and tested conventions for building grid systems, taking from frameworks such as InuitCSS and Bootstrap. It outputs a customizable grid that is simple to understand and adaptable.</p>
+        <p>The aim is to have a simple way of generating grid systems at will - something we still need to do until things like <a href="http://caniuse.com/#feat=flexbox">flexbox</a> and the <a href="">layout module</a> become common place (although you should totally use them right now whenever possible).</p>
+        <p>It's also responsive friendly - it lets you easily generate classes that will change the width of your columns.</p>
+
+        <ul>
+          <li><a href="#setup">Setup</a></li>
+          <li><a href="#usage">Usage</a></li>
+          <li><a href="#floats-vs-inline-block">Floats vs Inline-block</a></li>
+          <li><a href="#setup">API</a></li>
+        </ul>
+
+        <section id="setup">
+          <a href="#setup" class="link-heading"><h2>Setup</h2></a>
+
+          <p>Taco uses <a href="http://learnboost.github.io/stylus/">Stylus</a> which is available as an npm package:</p>
+
+          <pre>$ npm install -g stylus</pre>
+
+          <p>If you are unsure what npm is, head on to the <a href="https://docs.npmjs.com/">npm</a> docs page.</p>
+
+          <p>Taco itself is available both as an npm and <a href="http://bower.io/">bower</a> package.</p>
+
+          <pre>$ npm install taco</pre>
+          <p>or</p>
+          <pre>$ bower install taco</pre>
+
+          <p>You will then need to <code>@import</code> the <code>taco.styl</code> file into your project.</p>
+        </section>
+
+        <section id="usage">
+          <a href="#usage" class="link-heading"><h2>Usage</h2></a>
+        </section>
+
+        <section id="floats-vs-inline-block">
+          <a href="#floats-vs-inline-block" class="link-heading"><h2>Floats vs Inline-block</h2></a>
+        </section>
+
+        <section id="api">
+          <a href="#api" class="link-heading"><h2>API</h2></a>
+
+          <dl>
+            <dt>taco-generate-grid</dt>
+            <dd>
+              <p>Generates a wrapper, item and width classes.</p>
+
+              <strong>params:</strong>
+              <ul class="params-list">
+                <li>
+                  <strong>basename</strong>
+                  <p>
+                    <i>string</i>
+                  </p>
+                  <p>The core part of the class name. All prefixes and suffixes will be appended to it.</p>
+                  <p>default: <span>grid</span></p>
+                </li>
+
+                <li>
+                  <strong>itemname</strong>
+                  <p>
+                    <i>string</i>
+                  </p>
+                  <p>The string that will be appended to the item class.</p>
+                  <p>default: <span>-item</span></p>
+                </li>
+
+                <li>
+                  <strong>floats</strong>
+                  <p>
+                    <i>boolean</i>
+                  </p>
+                  <p>Should the grid be float based or inline-block based. Read more in the <a href="#floats-vs-inline-block">floats vs inline-block</a> section.</p>
+                  <p>default: <span>true</span></p>
+                </li>
+
+                <li>
+                  <strong>valign</strong>
+                  <p>
+                    <i><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/vertical-align">vertical-align</a></i>
+                  </p>
+                  <p>This will set the vertical align align property for items.</p>
+                  <p>default: <span>top</span></p>
+                </li>
+
+                <li>
+                  <strong>columns</strong>
+                  <p>
+                    <i>integer, list of integers, range</i>
+                  </p>
+                  <p>What widths should be created for items. Each number represents a set of fractions:
+                  <pre>taco-generate-grid(columns: 10)</pre>
+                  <p>Will create a set of fractions of 10 (1-10, 2-10 etc).</p>
+                  <pre>taco-generate-grid(columns: 2 4 7)</pre>
+                  <p>A set of fractions of 2, 4 and 7 (1-2, 1-4, 2-4, 1-7 etc). You can also pass in a range:</p>
+                  <pre>taco-generate-grid(columns: 2..10)</pre>
+                  <p>default: <span>2..10</span></p>
+                </li>
+
+                <li>
+                  <strong>gutter</strong>
+                  <p>
+                    <i>float</i>
+                  </p>
+                  <p>The width of the gutter between columns in pixels.</p>
+                  <p>default: <span>24</span></p>
+                </li>
+
+                <li>gutter (default: <span>24</span>)</li>
+              </ul>
+            </dd>
+
+            <dt>taco-generate-widths</dt>
+            <dd>
+              <p>Generates only the width classes. This function is used internally by <code>taco-generate-grid</code></p>
+
+              <strong>params:</strong>
+              <ul class="params-list">
+                <li>
+                  <strong>columns (required)</strong>
+                  <p>
+                    <i>integer, list of integers, range</i>
+                  </p>
+                  <p>This works same as for <code>taco-generate-grid</code>.</p>
+                </li>
+
+                <li>
+                  <strong>name (required)</strong>
+                  <p>
+                    <i>string</i>
+                  </p>
+                  <p>The class the name to which the width fraction will be appended ("-1-10" etc). Within <code>taco-generate-grid</code> this is a combination of the <code>basename</code> and <code>itemname</code>.</p>
+                </li>
+
+                <li>
+                  <strong>hidden</strong>
+                  <p>
+                    <i>string</i>
+                  </p>
+                  <p>If given, it will create a class prefixed with the string and with the <code>display: none</code> property. This is useful for creating classes ("hidden-palm-grid-item") that will hide an element under  media queries.</p>
+                </li>
+              </ul>
+            </dd>
+          </dl>
+        </section>
+
+        <section id="faq">
+          <a href="#faq" class="link-heading"><h2>FAQ</h2></a>
+        </section>
+
+      </div>
+      <div class="grid-item grid-item-2-5">
+        <ul>
+          <li><a href="#setup">Setup</a></li>
+          <li><a href="#usage">Usage</a></li>
+          <li><a href="#floats-vs-inline-block">Floats vs Inline-block</a></li>
+          <li><a href="#setup">API</a></li>
+        </ul>
+      </div>
+    </div>
   </body>
 </html>
 
