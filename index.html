@@ -10,22 +10,24 @@
     <div class="grid">
       <div class="grid-item grid-item-3-5 lap-grid-item-full">
         <h1>Taco</h1>
-        <p>Taco is a simple framework for building CSS grid systems.</p>
+        <p>Taco is a small framework for building CSS grid systems.</p>
       </div>
     </div>
 
     <div class="grid">
       <div class="grid-item grid-item-3-5 lap-grid-item-full">
-        <p>Taco follows a few tried and tested conventions for building grid systems, taking from frameworks such as InuitCSS and Bootstrap. It outputs a customizable grid that is simple to understand and adaptable.</p>
-        <p>The aim is to have a simple way of generating grid systems at will - something we still need to do until things like <a href="http://caniuse.com/#feat=flexbox">flexbox</a> and the <a href="">layout module</a> become common place (although you should totally use them right now whenever possible).</p>
-        <p>It's also responsive friendly - it lets you easily generate classes that will change the width of your columns.</p>
-
         <ul class="nav -inline">
           <li><a href="#setup">Setup</a></li>
           <li><a href="#usage">Usage</a></li>
           <li><a href="#floats-vs-inline-block">Floats vs Inline-block</a></li>
           <li><a href="#setup">API</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="https://github.com/dpiatek/taco">Source</a></li>
         </ul>
+
+        <p>It follows a few tried and tested conventions for building grid systems, very similar to great frameworks like <a href="https://github.com/inuitcss">InuitCSS</a> and <a href="http://getbootstrap.com/">Bootstrap</a>. It outputs a familar grid based on inline-blocks or floats, and gives you a lot of control about how many classes will be output and their naming. It tries to use the minimal and most predictable CSS to achieve a column layout.</p>
+
+        <p>Ideally, we would not need grid systems at all - and use <a href="http://caniuse.com/#feat=flexbox">flexbox</a> and the <a href="http://caniuse.com/#feat=css-grid">grid layout</a>. This is not always possible.</p>
 
         <section id="setup">
           <a href="#setup" class="link-heading"><h2>Setup</h2></a>
@@ -36,7 +38,7 @@
 
           <p>If you are unsure what npm is, head on to the <a href="https://docs.npmjs.com/">npm</a> docs page.</p>
 
-          <p>Taco itself is available both as an npm and <a href="http://bower.io/">bower</a> package.</p>
+          <p>Taco itself is available both on npm and <a href="http://bower.io/">bower</a>.</p>
 
           <pre>$ npm install taco</pre>
           <p>or</p>
@@ -47,10 +49,105 @@
 
         <section id="usage">
           <a href="#usage" class="link-heading"><h2>Usage</h2></a>
+
+          <p>Taco outputs several types of classes to build your grids:</p>
+          <ul>
+            <li><strong>wrapper</strong> - the container for your grid</li>
+            <li><strong>item</strong> - contains the common CSS for columns</li>
+            <li><strong>widths</strong> - are classes with just the width property, setting the item's width</li>
+            <li><strong>row</strong> - needed only for the float grid, a wrapper for a row of columns</li>
+            <li><strong>hidden</strong> - this class let's you hide the column. It's primary use is for responsive grids (see below for example usage)</li>
+          </ul>
+
+          <p>With the defaults, you would markup a Taco grid like this:</p>
+
+<pre>
+  // Don't forget to actually generate your grid first
+  taco-generate-grid()
+</pre>
+
+<pre>
+&lt;div <span class="pre-burlywood">class=</span>&quot;<span class="pre-white">grid</span>&quot;&gt; // wrapper
+  &lt;div <span class="pre-burlywood">class=</span>&quot;<span class="pre-white">grid-row</span>&quot;&gt; // row
+    &lt;div <span class="pre-burlywood">class=</span>&quot;<span class="pre-white">grid-item grid-item-2-3</span>&quot;&gt; // item + width
+      Main
+    &lt;/div&gt;
+
+    &lt;div <span class="pre-burlywood">class=</span>&quot;<span class="pre-white">grid-item grid-item-1-3</span>&quot;&gt;
+      Sidebar
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</pre>
+
+          <p>This grid would span the whole width of the container it is within. Normally, you would put a <code>min-width</code> and <code>max-width</code> on it to define the acceptable range of the columns stretch.</p>
+
+          <p>For an <code>inline-block</code> grid and with the defaults we don't always need the row element:</p>
+
+<pre>
+  taco-generate-grid(floats: false)
+</pre>
+
+<pre>
+&lt;div <span class="pre-burlywood">class=</span>&quot;<span class="pre-white">grid</span>&quot;&gt;
+  &lt;div <span class="pre-burlywood">class=</span>&quot;<span class="pre-white">grid-item grid-item-2-3</span>&quot;&gt;
+    Main
+  &lt;/div&gt;
+  &lt;div <span class="pre-burlywood">class=</span>&quot;<span class="pre-white">grid-item grid-item-1-3</span>&quot;&gt;
+    Sidebar
+  &lt;/div&gt;
+&lt;/div&gt;
+</pre>
+
+          <p>You can customize the generated grid - from the number of columns to the class names. Check out the <a href="#api">API</a> for details. The most important parameter is probably <code>columns</code>, with lets you specify what <strong>width</strong> classes you will have available. By default, you will have fractions ranging from one half to one-tenth. Let's say we only want a three column grid. We can do:</p>
+
+<pre>
+  taco-generate-grid(floats: false, columns: 3)
+</pre>
+
+          <p>Let's say now we want to change the width of the "Sidebar" column when the viewport is smaller then 768px. Taco does not pregenerate any classes for that. Instead, you generate more width classes with a prefix, under a media query:</p>
+
+<pre>
+  @media (max-width: 768px)
+    taco-generate-widths(columns: 3, name: lap-grid-item, hidden: "hidden-")
+</pre>
+
+          <p>This will generate similar width classes that <code>taco-generate-grid</code> would, but now they will be prefixed with "lap-". Now we can make both columns full width on smaller viewports:</p>
+
+<pre>
+&lt;div <span class="pre-burlywood">class=</span>&quot;<span class="pre-white">grid</span>&quot;&gt;
+  &lt;div <span class="pre-burlywood">class=</span>&quot;<span class="pre-white">grid-item grid-item-2-3 lap-grid-item-full</span>&quot;&gt;
+    Main
+  &lt;/div&gt;
+  &lt;div <span class="pre-burlywood">class=</span>&quot;<span class="pre-white">grid-item grid-item-1-3 lap-grid-item-full</span>&quot;&gt;
+    Sidebar
+  &lt;/div&gt;
+&lt;/div&gt;
+</pre>
+
+          <p>We can also hide the sidebar completely with the <code>hidden-lap-grid-item</code> class which gets generated only if we pass the "hidden" param:</p>
+
+<pre>
+&lt;div <span class="pre-burlywood">class=</span>&quot;<span class="pre-white">grid</span>&quot;&gt;
+  &lt;div <span class="pre-burlywood">class=</span>&quot;<span class="pre-white">grid-item grid-item-2-3 lap-grid-item-full</span>&quot;&gt;
+    Main
+  &lt;/div&gt;
+  &lt;div <span class="pre-burlywood">class=</span>&quot;<span class="pre-white">grid-item grid-item-1-3 hidden-lap-grid-item</span>&quot;&gt;
+    Sidebar
+  &lt;/div&gt;
+&lt;/div&gt;
+</pre>
+
         </section>
 
         <section id="floats-vs-inline-block">
-          <a href="#floats-vs-inline-block" class="link-heading"><h2>Floats vs Inline-block</h2></a>
+          <a href="#floats-vs-inline-block" class="link-heading"><h2>Floats vs inline-block</h2></a>
+
+          <p>The <code>display: inline-block</code> property has a couple of problems - if you try to make a grid with them, you will notice that you have extra space between elements. There are many ways to fix that - head on to this excellent <a href="http://css-tricks.com/fighting-the-space-between-inline-block-elements/">CCS Tricks</a> to find out how.</p>
+
+          <p>Taco uses the negative margin method - it's the least intrusive, although as well the least precise. I used to prefer the <a href="http://css-tricks.com/fighting-the-space-between-inline-block-elements/#comment-166444">letter-spacing method</a>, but browsers are quite inconsitent with <a href="https://www.google.co.uk/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#safe=off&q=webkit+subpixel+percentage+width">subpixel rendering (especially Webkit)</a> and end up losing a pixel or when using relative values. This means that inline-block grids often end up missing a pixel or two, which the depending on your design might be a problem or not. This is why Taco defaults to a floated columns grid instead.</p>
+
+          <p>I am not a big fan of floats - I think they are used in CSS for too many things they were never meant to be used. They create weird layout issues in complex CSS. Inline-block is a lot more predictable, as well as giving you vertical-align, which is a fantastic little property.</p>
         </section>
 
         <section id="api">
@@ -162,8 +259,16 @@
 
         <section id="faq">
           <a href="#faq" class="link-heading"><h2>FAQ</h2></a>
+
+          <strong>I could totally build a grid like that myself!</strong>
+          <strong>I don't use Stylus, I prefer SASS</strong>
+          <strong>You use way too many classes</strong>
+          <strong>This is basically InuitCSS grid!</strong>
         </section>
 
+        <footer id="footer">
+          <small>Made by <a href="http://dominikpiatek.com/">Dominik Piątek</a>. Looking for licensing info? Have a look a the <a href="https://github.com/dpiatek/taco">github repo</a>.</small>
+        </footer>
       </div>
       <div class="grid-item grid-item-2-5 hidden-lap-grid-item">
         <ul class="nav -side">
@@ -171,6 +276,8 @@
           <li><a href="#usage">Usage</a></li>
           <li><a href="#floats-vs-inline-block">Floats vs Inline-block</a></li>
           <li><a href="#setup">API</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="https://github.com/dpiatek/taco">Source</a></li>
         </ul>
       </div>
     </div>

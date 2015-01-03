@@ -63,6 +63,12 @@ pre {
   padding: 1em;
   color: rgba(144,238,144,0.5);
 }
+pre .pre-white {
+  color: #fff;
+}
+pre .pre-burlywood {
+  color: #deb887;
+}
 code {
   color: rgba(144,238,144,0.5);
 }
@@ -104,12 +110,45 @@ h2 {
   margin-top: 0;
   color: #fff;
 }
+.nav {
+  padding-left: 0;
+}
+.nav li {
+  list-style: none;
+  margin-bottom: 4px;
+}
+.nav a {
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.3em;
+}
+.nav a[href^="https://github.com"]:before {
+  content: " ";
+  background-image: url("github-logo.svg");
+  background-repeat: no-repeat;
+  width: 23px;
+  height: 16px;
+  display: inline-block;
+  background-size: 16px;
+}
 .nav.-inline {
   display: none;
 }
 @media (max-width: 768px) {
   .nav.-inline {
     display: block;
+  }
+  .nav.-inline a:after {
+    content: "|";
+    margin-left: 10px;
+    color: rgba(144,238,144,0.2);
+  }
+  .nav.-inline li {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  .nav.-inline li:last-child a:after {
+    content: "";
   }
 }
 .link-heading {
