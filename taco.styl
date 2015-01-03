@@ -1,4 +1,4 @@
-generateGrid(
+taco-generate-grid(
   basename = grid,
   itemname = -item,
   floats = true,
@@ -36,9 +36,9 @@ generateGrid(
     box-sizing: border-box
 
   // Grid item width classes
-  genereteWidths(columns, basename + itemname)
+  taco-generate-widths(columns, basename + itemname)
 
-genereteWidths(columns, name, hidden = false)
+taco-generate-widths(columns, name, hidden = false)
   for $i in columns
     for $j in (1..$i - 1)
       .{name}-{$j}-{$i}
