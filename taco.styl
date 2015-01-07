@@ -1,7 +1,7 @@
 taco-generate-grid(
   basename = grid,
   itemname = -item,
-  floats = true,
+  type = "float",
   valign = top,
   columns = 2..10,
   gutter = 24)
@@ -11,7 +11,7 @@ taco-generate-grid(
     margin-left: -(unit(gutter, px))
 
   // Create a row class if needed
-  if floats
+  if type == "float"
     .{basename + itemname}-row
       &:after
         clear: both
@@ -23,7 +23,7 @@ taco-generate-grid(
 
   // Grid item class
   .{basename + itemname}
-    if floats
+    if type == "float"
       float: left
     else
       display: inline-block
