@@ -1,10 +1,17 @@
 .grid {
   margin-left: -24px;
 }
+.grid-item-row:after {
+  clear: both;
+}
+.grid-item-row:before,
+.grid-item-row:after {
+  box-sizing: border-box;
+  display: table;
+  content: " ";
+}
 .grid-item {
-  display: inline-block;
-  margin-left: -4px;
-  vertical-align: top;
+  float: left;
   width: 100%;
   padding-left: 24px;
   box-sizing: border-box;
@@ -86,6 +93,9 @@ dt {
 }
 dt:before {
   content: "";
+}
+dd {
+  margin-bottom: 1.5em;
 }
 h1 {
   font-size: 4em;

@@ -1,9 +1,9 @@
 @import "bower_components/taco/taco.styl"
 
-generateGrid(columns: 5, floats: false)
+taco-generate-grid(columns: 5)
 
 @media (max-width: 768px)
-  genereteWidths(columns: 5, name: lap-grid-item, hidden: "hidden-")
+  taco-generate-widths(columns: 5, name: "lap-grid-item", hidden: "hidden-")
 
 body
   font-family: 'Raleway', sans-serif
@@ -45,6 +45,9 @@ dt
 
 dt:before
   content: ""
+
+dd
+  margin-bottom: 1.5em
 
 h1
   font-size: 4em

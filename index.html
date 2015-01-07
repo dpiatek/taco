@@ -82,10 +82,10 @@
 
           <p>This grid would span the whole width of the container it is within. Normally, you would put a <code>min-width</code> and <code>max-width</code> on it to define the acceptable range of the columns stretch.</p>
 
-          <p>For an <code>inline-block</code> grid and with the defaults we don't always need the row element:</p>
+          <p>For an <code>inline-block</code> grid we don't always need the row element:</p>
 
 <pre>
-  taco-generate-grid(floats: false)
+  taco-generate-grid(type: "inline-block")
 </pre>
 
 <pre>
@@ -102,7 +102,7 @@
           <p>You can customize the generated grid - from the number of columns to the class names. Check out the <a href="#api">API</a> for details. The most important parameter is probably <code>columns</code>, with lets you specify what <strong>width</strong> classes you will have available. By default, you will have fractions ranging from one half to one-tenth. Let's say we only want a three column grid. We can do:</p>
 
 <pre>
-  taco-generate-grid(floats: false, columns: 3)
+  taco-generate-grid(type: "inline-block", columns: 3)
 </pre>
 
           <p>Let's say now we want to change the width of the "Sidebar" column when the viewport is smaller then 768px. Taco does not pregenerate any classes for that. Instead, you generate more width classes with a prefix, under a media query:</p>
@@ -179,12 +179,12 @@
                 </li>
 
                 <li>
-                  <strong>floats</strong>
+                  <strong>type</strong>
                   <p>
-                    <i>boolean</i>
+                    <i>string</i>
                   </p>
-                  <p>Should the grid be float based or inline-block based. Read more in the <a href="#floats-vs-inline-block">floats vs inline-block</a> section.</p>
-                  <p>default: <span>true</span></p>
+                  <p>How columns are made - currently supports "float" and "inline-block". Read more in the <a href="#floats-vs-inline-block">floats vs inline-block</a> section.</p>
+                  <p>default: <span>float</span></p>
                 </li>
 
                 <li>
@@ -213,7 +213,7 @@
                 <li>
                   <strong>gutter</strong>
                   <p>
-                    <i>float</i>
+                    <i>integer</i>
                   </p>
                   <p>The width of the gutter between columns in pixels.</p>
                   <p>default: <span>24</span></p>
@@ -258,7 +258,7 @@
         </section>
 
         <footer id="footer">
-          <small>Made by <a href="http://dominikpiatek.com/">Dominik Piątek</a>. Looking for licensing info? Have a look a the <a href="https://github.com/dpiatek/taco">github repo</a>.</small>
+          <small>Copyright © 2015 <a href="http://dominikpiatek.com/">Dominik Piątek</a>, released under the MIT license</small>
         </footer>
       </div>
       <div class="grid-item grid-item-2-5 hidden-lap-grid-item">
