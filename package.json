@@ -1,0 +1,24 @@
+{
+  "name": "taco-grids",
+  "version": "1.0.0",
+  "description": "A simple grid system generator",
+  "main": "taco.styl",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dpiatek/taco.git"
+  },
+  "keywords": [
+    "grid",
+    "css",
+    "stylus"
+  ],
+  "author": "Dominik Piatek",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dpiatek/taco/issues"
+  },
+  "homepage": "https://github.com/dpiatek/taco"
+}
