@@ -4,7 +4,8 @@ taco-generate-grid(
   type = "float",
   valign = top,
   columns = 2..10,
-  gutter = 24)
+  gutter = 24,
+  widths = true)
 
   // Grid wrapper class
   .{basename}
@@ -36,7 +37,8 @@ taco-generate-grid(
     box-sizing: border-box
 
   // Grid item width classes
-  taco-generate-widths(columns, basename + itemname)
+  if widths
+    taco-generate-widths(columns, basename + itemname)
 
 taco-generate-widths(columns, name, hidden = false)
   for $i in columns
