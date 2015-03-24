@@ -221,7 +221,23 @@
                   <p>default: <span>24</span></p>
                 </li>
 
-                <li>gutter (default: <span>24</span>)</li>
+                <li>
+                  <strong>widths</strong>
+                  <p>
+                    <i>boolean</i>
+                  </p>
+                  <p>Should width classes be generated.</p>
+                  <p>default: <span>true</span></p>
+                </li>
+
+                <li>
+                  <strong>inline-block-hack</strong>
+                  <p>
+                    <i>string</i>
+                  </p>
+                  <p>Should the inline-block hack be used. At the moment this suports "margin" which adds a -4px <code>margin-left</code>. Pass "none" to not use any hack (usefull when you are minifing HTML and don't need it).</p>
+                  <p>default: <span>"margin"</span></p>
+                </li>
               </ul>
             </dd>
 
