@@ -5,7 +5,8 @@ taco-generate-grid(
   valign = top,
   columns = 2..10,
   gutter = 24,
-  widths = true)
+  widths = true,
+  inline-block-hack = "margin")
 
   // Grid wrapper class
   .{basename}
@@ -28,9 +29,10 @@ taco-generate-grid(
       float: left
     else
       display: inline-block
-      // inline-block whitespace
-      margin-left: -4px
       vertical-align: valign
+
+      if inline-block-hack == "margin"
+        margin-left: -4px
 
       &:first-child
         margin-left: 0
